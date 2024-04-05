@@ -1,6 +1,6 @@
 import * as readline from "readline";
 import { Lexer } from "../lexer/lexer";
-import { Token, EOF, ILLEGAL } from "../lexer/token";
+import { Token, TokenType } from "../lexer/token";
 
 const PROMPT = ">>";
 
@@ -18,7 +18,7 @@ export function start(
     const lexer = new Lexer(input);
     let token = lexer.nextToken();
     console.log(token);
-    while (token.Type !== EOF && token.Type !== ILLEGAL) {
+    while (token.Type !== TokenType.EOF && token.Type !== TokenType.ILLEGAL) {
       token = lexer.nextToken();
       console.log(token);
     }

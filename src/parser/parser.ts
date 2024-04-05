@@ -1,5 +1,5 @@
 import { Lexer } from "../lexer/lexer";
-import { Token } from "../lexer/token";
+import { Token, TokenType } from "../lexer/token";
 import { Program } from "../ast/ast";
 
 
@@ -22,7 +22,7 @@ export class Parser {
   parseProgram(): Program {
     const program = new Program()
 
-    while(this.curToken.Type != EOF)
+    while(this.curToken.Type != TokenType.EOF)
 
   }
 }

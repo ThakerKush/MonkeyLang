@@ -8,4 +8,3 @@ function main() {
   start(process.stdin, process.stdout);
 }
 main();
-w

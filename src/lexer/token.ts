@@ -1,38 +1,34 @@
 import { Lexer } from "./lexer";
 
-export type TokenType = string;
-
-export const ILLEGAL = "ILLEGAL";
-export const EOF = "EOF";
-// Identifiers + literals
-export const IDENT = "IDENT"; // add, foobar, x, y, ...
-export const INT = "INT"; // 1343456
-// Operators
-export const ASSIGN = "=";
-export const PLUS = "+";
-// Delimiters
-export const COMMA = ",";
-export const SEMICOLON = ";";
-export const LPAREN = "(";
-export const RPAREN = ")";
-export const LBRACE = "{";
-export const RBRACE = "}";
-// Keywords
-export const FUNCTION = "FUNCTION";
-export const LET = "LET";
-export const MINUS = "-";
-export const BANG = "!";
-export const ASTERISK = "*";
-export const SLASH = "/";
-export const LT = "<";
-export const GT = ">";
-export const TRUE = "TRUE";
-export const FALSE = "FALSE";
-export const IF = "IF";
-export const ELSE = "ELSE";
-export const RETURN = "RETURN";
-export const EQ = "==";
-export const NOT_EQ = "!=";
+export enum TokenType {
+  ILLEGAL = "ILLEGAL",
+  EOF = "EOF",
+  IDENT = "IDENT",
+  INT = "INT",
+  ASSIGN = "=",
+  PLUS = "+",
+  COMMA = ",",
+  SEMICOLON = ";",
+  LPAREN = "(",
+  RPAREN = ")",
+  LBRACE = "{",
+  RBRACE = "}",
+  FUNCTION = "FUNCTION",
+  LET = "LET",
+  MINUS = "-",
+  BANG = "!",
+  ASTERISK = "*",
+  SLASH = "/",
+  LT = "<",
+  GT = ">",
+  TRUE = "TRUE",
+  FALSE = "FALSE",
+  IF = "IF",
+  ELSE = "ELSE",
+  RETURN = "RETURN",
+  EQ = "==",
+  NOT_EQ = "!=",
+}
 
 export interface Token {
   Type: TokenType;
@@ -40,20 +36,20 @@ export interface Token {
 }
 
 const keywords: Record<string, TokenType> = {
-  fn: FUNCTION,
-  let: LET,
-  true: TRUE,
-  false: FALSE,
-  if: IF,
-  else: ELSE,
-  return: RETURN,
+  fn: TokenType.FUNCTION,
+  let: TokenType.LET,
+  true: TokenType.TRUE,
+  false: TokenType.FALSE,
+  if: TokenType.IF,
+  else: TokenType.ELSE,
+  return: TokenType.RETURN,
 };
 
 export function LookUpIdent(ident: string): TokenType {
   if (ident in keywords) {
     return keywords[ident]!;
   }
-  return IDENT;
+  return TokenType.IDENT;
 }
 
 export function test(input: string) {
@@ -63,5 +59,5 @@ export function test(input: string) {
   do {
     tok = test.nextToken();
     console.log(tok);
-  } while (tok.Type !== EOF);
+  } while (tok.Type !== TokenType.EOF);
 }
